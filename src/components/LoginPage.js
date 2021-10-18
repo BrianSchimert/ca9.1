@@ -1,5 +1,6 @@
 import React from 'react';
 import AppMode from './AppMode.js'
+import ErrorBox from './ErrorBox.js'
 
 class LoginPage extends React.Component {
 
@@ -16,11 +17,11 @@ class LoginPage extends React.Component {
     componentDidUpdate(prevProps) {
         if (!this.state.passwordValid) {
             this.password.current.value = "";
-            this.passwordError.current.focus();
+            //this.passwordError.current.focus();
         }
         if (!this.state.emailValid) {
             this.email.current.value = "";
-            this.emailError.current.focus();
+            //this.emailError.current.focus();
         } 
     } 
 
@@ -41,7 +42,7 @@ class LoginPage extends React.Component {
         }
     }
 
-    renderErrorBox = () => {
+ /*   renderErrorBox = () => {
         if (this.state.emailValid && this.state.passwordValid) {
             return null;
         }
@@ -83,12 +84,16 @@ class LoginPage extends React.Component {
                         </a>
                     </p>);
     }
+    */
 
     render() {
         return(
             <div id="loginPage" className="mode-page">
                 <h1 className="mode-page-header">Log In</h1>
-                {this.renderErrorBox()}
+
+                <ErrorBox emailValid={this.emailValid}
+                            passwordValid={this.passwordValid}   />
+                            
                 <form id="loginForm" className="centered" 
                     onSubmit={this.handleSubmit} noValidate>
                     <div className="mb-3">
